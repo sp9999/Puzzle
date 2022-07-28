@@ -1,0 +1,254 @@
+<script src="BrailleMapping.js"></script>
+<script src="MorseMapping.js"></script>
+<script src="SemaphoreMapping.js"></script>
+<script src="NatoMapping.js"></script>
+<script src="CodeTranslator.js"></script>
+<link rel="stylesheet" href="CodeTranslator.css">
+<table>
+  <tr>
+    <td>
+      <label for="letterField">Letter:</label>
+    </td>
+    <td>
+      <input type="text" id="letterField" name="leterField" oninput="validateLetterInput(this.value)" size="5">
+    </td>
+    <td>
+      Nato:  <span id="nato">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="indexField">Decimal:</label>
+    </td>
+    <td>
+      <input type="text" id="indexField" name="indexField" oninput="validateIndexInput(this.value)" size="5">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="binaryField">Binary:</label>
+    </td>
+    <td>
+      <input type="text" id="binaryField" name="binaryField" oninput="validateBinaryInput(this.value)" size="5">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="hexadecimalField">Hexadecimal:</label>
+    </td>
+    <td>
+      <input type="text" id="hexadecimalField" name="hexadecimalField" oninput="validateHexadecimalInput(this.value)" size="5">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="morseField">Morse:</label>
+    </td>
+    <td>
+      <input type="text" id="morseField" name="morseField" oninput="validateMorseInput(this.value)" size="5">  
+    </td>
+  </tr>    
+  <tr>
+    <td>
+      <label for="brailleField">Braille:</label>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <input type="checkbox" id="braille0" name="braille0" onClick="validateBrailleInput()">
+          </td>
+          <td>
+            <input type="checkbox" id="braille1" name="braille1" onClick="validateBrailleInput()">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" id="braille2" name="braille2" onClick="validateBrailleInput()">
+          </td>
+          <td>
+            <input type="checkbox" id="braille3" name="braille3" onClick="validateBrailleInput()">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" id="braille4" name="braille4" onClick="validateBrailleInput()">
+          </td>
+          <td>
+            <input type="checkbox" id="braille5" name="braille5" onClick="validateBrailleInput()">
+          </td>
+        </tr>           
+      </table>
+    </td>
+    <td>
+      <button type="button" id="brailleClear" name="brailleClear" onClick="clearBraille()"> Clear </button> 
+    </td>        
+  </tr>  
+  <tr>
+    <td>
+      <label for="semaphoreField">Semaphore:</label>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <input type="checkbox" id="semaphore0" name="semaphore0" onClick="validateSemaphoreInput(this.checked, '0')">
+          </td>
+          <td>
+            <input type="checkbox" id="semaphore1" name="semaphore1" onClick="validateSemaphoreInput(this.checked, '1')">
+          </td>
+          <td>
+            <input type="checkbox" id="semaphore2" name="semaphore2" onClick="validateSemaphoreInput(this.checked, '2')">
+          </td>
+        </tr>
+        <tr>          
+          <td>
+            <input type="checkbox" id="semaphore3" name="semaphore3" onClick="validateSemaphoreInput(this.checked, '3')">
+          </td>
+          <td>
+            <input type="radio" id="semaphoreClear" name="semaphoreClear" onClick="clearSemaphore(true)"> 
+          </td>
+          <td>
+            <input type="checkbox" id="semaphore4" name="semaphore4" onClick="validateSemaphoreInput(this.checked, '4')">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" id="semaphore5" name="semaphore5" onClick="validateSemaphoreInput(this.checked, '5')">
+          </td>
+          <td>
+            <input type="checkbox" id="semaphore6" name="semaphore6" onClick="validateSemaphoreInput(this.checked, '6')">
+          </td>
+          <td>
+            <input type="checkbox" id="semaphore7" name="semaphore7" onClick="validateSemaphoreInput(this.checked, '7')">
+          </td>
+        </tr>           
+      </table>
+    </td>    
+    <td>
+      Click center to clear
+    </td>     
+  </tr>
+  <tr>
+    <td>
+      <label for="pigpenField">Pigpen:</label>
+    </td>
+    <td>
+      <table id="pigpenSquareTable">
+        <tr>
+          <td>
+            <canvas id="pigpenSquare0" height="25" width="25" onClick="toggleTopLeftLine()">
+          </td>
+          <td>
+            <canvas id="pigpenSquare1" height="25" width="25" onClick="toggleTopLine()">
+          </td>
+          <td>
+            <canvas id="pigpenSquare2" height="25" width="25" onClick="toggleTopRightLine()">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <canvas id="pigpenSquare3" height="25" width="25" onClick="toggleLeftLine()">
+          </td>
+          <td>
+            <input type="radio" id="pigpenSquareDot" name="pigpenSquareDot" onClick="toggleSquareDotRadio()" color="black">
+          </td>
+          <td>
+            <canvas id="pigpenSquare4" height="25" width="25" onClick="toggleRightLine()">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <canvas id="pigpenSquare5" height="25" width="25" onClick="toggleBottomLeftLine()">
+          </td>
+          <td>
+            <canvas id="pigpenSquare6" height="25" width="25" onClick="toggleBottomLine()">
+          </td>
+          <td>
+            <canvas id="pigpenSquare7" height="25" width="25" onClick="toggleBottomRightLine()">
+          </td>
+        </tr>
+      </table>      
+    </td>
+    <td>
+      <table id="pigpenCrossTable">
+        <tr>
+          <td>
+            <canvas id="pigpenCross0" height="25" width="25" onClick="toggleNWLine()">
+          </td>
+          <td>
+            <input type="radio" id="pigpenCrossDotN" name="pigpenCrossDot" onClick="toggleCrossNDotRadio()" >
+          </td>
+          <td>
+            <canvas id="pigpenCross1" height="25" width="25" onClick="toggleNELine()">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="radio" id="pigpenCrossDotW" name="pigpenCrossDot" onClick="toggleCrossWDotRadio()" >
+          </td>
+          <td>
+            <canvas id="pigpenCrossCenter" height="25" width="25">
+          </td>
+          <td>
+            <input type="radio" id="pigpenCrossDotE" name="pigpenCrossDot" onClick="toggleCrossEDotRadio()" >
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <canvas id="pigpenCross2" height="25" width="25" onClick="toggleSWLine()">
+          </td>
+          <td>
+            <input type="radio" id="pigpenCrossDotS" name="pigpenCrossDot" onClick="toggleCrossSDotRadio()" >
+          </td>
+          <td>
+            <canvas id="pigpenCross3" height="25" width="25" onClick="toggleSELine()">
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      Click lines to draw pigpen
+      <br>
+      <button type="button" id="pigpenClear" name="pigpenClear" onClick="clearAllPigpenCanvas()"> Clear </button> 
+    </td>
+  </tr>    
+</table>
+<br>
+<table>
+  <tr>
+    <td>
+      <label for="maritimeField">Maritime:</label>
+    </td>
+    <td>
+      <img width="40" height="40" id="maritimeA" class="maritimeImage" onClick="toggleMaritime('A')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/ICS_Alpha.svg/100px-ICS_Alpha.svg.png">
+      <img width="40" height="40" id="maritimeB" class="maritimeImage" onClick="toggleMaritime('B')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/ICS_Bravo.svg/100px-ICS_Bravo.svg.png">
+      <img width="40" height="40" id="maritimeC" class="maritimeImage" onClick="toggleMaritime('C')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/ICS_Charlie.svg/100px-ICS_Charlie.svg.png">
+      <img width="40" height="40" id="maritimeD" class="maritimeImage" onClick="toggleMaritime('D')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/ICS_Delta.svg/100px-ICS_Delta.svg.png">
+      <img width="40" height="40" id="maritimeE" class="maritimeImage" onClick="toggleMaritime('E')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ICS_Echo.svg/100px-ICS_Echo.svg.png"> <br>
+      <img width="40" height="40" id="maritimeF" class="maritimeImage" onClick="toggleMaritime('F')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ICS_Foxtrot.svg/100px-ICS_Foxtrot.svg.png">
+      <img width="40" height="40" id="maritimeG" class="maritimeImage" onClick="toggleMaritime('G')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/ICS_Golf.svg/100px-ICS_Golf.svg.png">    
+      <img width="40" height="40" id="maritimeH" class="maritimeImage" onClick="toggleMaritime('H')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/ICS_Hotel.svg/100px-ICS_Hotel.svg.png">
+      <img width="40" height="40" id="maritimeI" class="maritimeImage" onClick="toggleMaritime('I')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/ICS_India.svg/100px-ICS_India.svg.png">
+      <img width="40" height="40" id="maritimeJ" class="maritimeImage" onClick="toggleMaritime('J')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/ICS_Juliet.svg/100px-ICS_Juliet.svg.png"> <br>
+      <img width="40" height="40" id="maritimeK" class="maritimeImage" onClick="toggleMaritime('K')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ICS_Kilo.svg/100px-ICS_Kilo.svg.png">
+      <img width="40" height="40" id="maritimeL" class="maritimeImage" onClick="toggleMaritime('L')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/ICS_Lima.svg/100px-ICS_Lima.svg.png">
+      <img width="40" height="40" id="maritimeM" class="maritimeImage" onClick="toggleMaritime('M')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/ICS_Mike.svg/100px-ICS_Mike.svg.png">
+      <img width="40" height="40" id="maritimeN" class="maritimeImage" onClick="toggleMaritime('N')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ICS_November.svg/100px-ICS_November.svg.png">
+      <img width="40" height="40" id="maritimeO" class="maritimeImage" onClick="toggleMaritime('O')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/ICS_Oscar.svg/100px-ICS_Oscar.svg.png"> <br>
+      <img width="40" height="40" id="maritimeP" class="maritimeImage" onClick="toggleMaritime('P')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/ICS_Papa.svg/100px-ICS_Papa.svg.png">
+      <img width="40" height="40" id="maritimeQ" class="maritimeImage" onClick="toggleMaritime('Q')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/ICS_Quebec.svg/100px-ICS_Quebec.svg.png">
+      <img width="40" height="40" id="maritimeR" class="maritimeImage" onClick="toggleMaritime('R')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ICS_Romeo.svg/100px-ICS_Romeo.svg.png">
+      <img width="40" height="40" id="maritimeS" class="maritimeImage" onClick="toggleMaritime('S')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/ICS_Sierra.svg/100px-ICS_Sierra.svg.png">
+      <img width="40" height="40" id="maritimeT" class="maritimeImage" onClick="toggleMaritime('T')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/ICS_Tango.svg/100px-ICS_Tango.svg.png"> <br>
+      <img width="40" height="40" id="maritimeU" class="maritimeImage" onClick="toggleMaritime('U')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/ICS_Uniform.svg/100px-ICS_Uniform.svg.png">
+      <img width="40" height="40" id="maritimeV" class="maritimeImage" onClick="toggleMaritime('V')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ICS_Victor.svg/100px-ICS_Victor.svg.png">
+      <img width="40" height="40" id="maritimeW" class="maritimeImage" onClick="toggleMaritime('W')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/ICS_Whiskey.svg/100px-ICS_Whiskey.svg.png">
+      <img width="40" height="40" id="maritimeX" class="maritimeImage" onClick="toggleMaritime('X')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/ICS_X-ray.svg/100px-ICS_X-ray.svg.png">
+      <img width="40" height="40" id="maritimeY" class="maritimeImage" onClick="toggleMaritime('Y')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/ICS_Yankee.svg/100px-ICS_Yankee.svg.png"> <br> 
+      <img width="40" height="40" id="maritimeZ" class="maritimeImage" onClick="toggleMaritime('Z')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/ICS_Zulu.svg/100px-ICS_Zulu.svg.png">
+    </td>
+  </tr>
+</table>
+
+<script src="Pigpen.js"></script>

@@ -1,0 +1,13 @@
+#pigpenSquareTable, #pigpenCrossTable {
+    border-spacing: 0px;
+}
+
+.maritimeImage {
+  border: 1px solid #000;
+  margin: 5px;
+}
+
+.selectedMaritime {
+  box-shadow: 0 0 0 3px #000;
+
+}
