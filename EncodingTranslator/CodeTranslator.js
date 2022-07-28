@@ -204,7 +204,7 @@ function validateHexadecimalInput(input) {
             finalHexadecimal = ''
         }
         //ignore non hexadecimal value
-        else if (isNaN(lastChar) && lastChar > 'G') {
+        else if (isNaN(lastChar) && lastChar > 'F') {
             if (input.length > 0) {
                 finalHexadecimal = input.substring(0, input.length - 1)
             }
